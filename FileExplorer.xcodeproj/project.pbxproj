@@ -12,6 +12,12 @@
 		2B6575F1226CB58200D36135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6575EF226CB58200D36135 /* Main.storyboard */; };
 		2B6575F3226CB58600D36135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B6575F2226CB58600D36135 /* Assets.xcassets */; };
 		2B6575F6226CB58600D36135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6575F4226CB58600D36135 /* LaunchScreen.storyboard */; };
+		EF22E2232279621400693312 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22E2222279621400693312 /* FileCell.swift */; };
+		EF22E22522796A0600693312 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22E22422796A0600693312 /* File.swift */; };
+		EF22E227227AD3E600693312 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22E226227AD3E600693312 /* TableViewController.swift */; };
+		EF22E229227AFE0700693312 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF22E228227AFE0700693312 /* image.jpg */; };
+		EF22E22B227B06B700693312 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22E22A227B06B700693312 /* HeaderCell.swift */; };
+		EF22E22D227B16EA00693312 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22E22C227B16EA00693312 /* Table.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		2B6575F2226CB58600D36135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B6575F5226CB58600D36135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B6575F7226CB58600D36135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF22E2222279621400693312 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		EF22E22422796A0600693312 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		EF22E226227AD3E600693312 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		EF22E228227AFE0700693312 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image.jpg; path = ../../../Documents/image.jpg; sourceTree = "<group>"; };
+		EF22E22A227B06B700693312 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		EF22E22C227B16EA00693312 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +68,16 @@
 			children = (
 				2B6575EB226CB58200D36135 /* AppDelegate.swift */,
 				2B6575ED226CB58200D36135 /* ViewController.swift */,
+				EF22E22C227B16EA00693312 /* Table.swift */,
+				EF22E22A227B06B700693312 /* HeaderCell.swift */,
 				2B6575EF226CB58200D36135 /* Main.storyboard */,
+				EF22E22422796A0600693312 /* File.swift */,
+				EF22E2222279621400693312 /* FileCell.swift */,
 				2B6575F2226CB58600D36135 /* Assets.xcassets */,
+				EF22E228227AFE0700693312 /* image.jpg */,
 				2B6575F4226CB58600D36135 /* LaunchScreen.storyboard */,
 				2B6575F7226CB58600D36135 /* Info.plist */,
+				EF22E226227AD3E600693312 /* TableViewController.swift */,
 			);
 			path = FileExplorer;
 			sourceTree = "<group>";
@@ -125,6 +143,7 @@
 				2B6575F6226CB58600D36135 /* LaunchScreen.storyboard in Resources */,
 				2B6575F3226CB58600D36135 /* Assets.xcassets in Resources */,
 				2B6575F1226CB58200D36135 /* Main.storyboard in Resources */,
+				EF22E229227AFE0700693312 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +155,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B6575EE226CB58200D36135 /* ViewController.swift in Sources */,
+				EF22E22D227B16EA00693312 /* Table.swift in Sources */,
+				EF22E22522796A0600693312 /* File.swift in Sources */,
+				EF22E2232279621400693312 /* FileCell.swift in Sources */,
+				EF22E227227AD3E600693312 /* TableViewController.swift in Sources */,
+				EF22E22B227B06B700693312 /* HeaderCell.swift in Sources */,
 				2B6575EC226CB58200D36135 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

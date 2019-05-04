@@ -9,12 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()     
+        
+        //sessionLoadData()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    
+    
 }
 
