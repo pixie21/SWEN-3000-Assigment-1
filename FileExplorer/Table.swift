@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class Table: UITableViewController {
+    
+    
+    @IBOutlet var bckbtn: UIBarButtonItem!
     //@IBOutlet var tableView: UITableView!
      var url = URL(string: "http://127.0.0.1:8000/?folder=")
     var filenames = [File]()
@@ -23,10 +26,13 @@ class Table: UITableViewController {
     //    let foldername = Array
     let sectionTitles: [String] = ["Folders", "Files"]
     var current_folder:String=""
+    var backcount:Int=0
     
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Root View";
+        self.navigationItem.leftBarButtonItem=nil
         
         sessionLoadData(downloadURL: url!)
         // Do any additional setup after loading the view, typically from a nib.
@@ -88,13 +94,6 @@ class Table: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //       let view = UIView()
-        //        view.backgroundColor = UIColor.gray
-        //
-        //        let label = UILabel()
-        //        label.text = sectionTitles[section]
-        //        view.addSubview(label)
-        //        return view
         
         let cell3 = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderCell
         cell3.headerLabel.text = sectionTitles[section]
@@ -127,80 +126,85 @@ class Table: UITableViewController {
         
     }
     
-    //        let cell1
-    //        if indexPath.row == 0 {
-    //            returnCell = tableView.dequeueReusableCell(withIdentifier: "Folders", for: indexPath)
-    //            returnCell.filenamelabel?.text = file_names[indexPath.row]
-    //        //cell.textLabel?.text = file_names[indexPath.row]
-    //        return returnCell
-    //        } else {
-    //            returnCell = tableView.dequeueReusableCell(withIdentifier: "Files", for: indexPath)
-    //            returnCell.filesname?.text = file_names[indexPath.row]        }
-    //        guard let cell2 = tableView.dequeueReusableCell(withIdentifier: "Files") as? FileCell else { return UITableViewCell() }
-    //        cell2.filesname?.text = files[indexPath.row]
-    
-    //
-    //        let indexPath = tableView.indexPathForSelectedRow
-    //        let myIndex = indexPath!.row
-    //        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
-    //        let currentItem = currentCell.textLabel!.text
-    //        print(currentItem)
-    //        let alertController = UIAlertController(title: "Simplified iOS", message: "YOu Selected" + currentItem!, preferredStyle: .alert)
-    //        let defaultAction = UIAlertAction(title: "Close Alert", style: .default, handler: nil)
-    //        alertController.addAction((defaultAction))
-    //        //tableView.deselectRow(at: indexPath, animated:false)
-    //
-    //        present(alertController, animated: true, completion: nil)
-    //        print(self.file_names[indexPath!.row])
-    //l//et indexPath = tableView.indexPathForSelectedRow
-    
-    //        cell.parentnamelabel?.text = filenames[indexPath.row].parent
-    //            cell.parentfolderLabel.text = filenames[indexPath.row].parent
-    //        print(street)
-    //
-    //            street += 1
-    //
+    @IBAction func previous(_sender:UIBarButtonItem){
+        print("Pressed")
+    }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected \( self.file_names[(indexPath.row)])")
+        //print("selected \( self.file_names[(indexPath.row)])")
+        
+        self.backcount=self.backcount+1
+        if self.backcount > 0 {
+            self.navigationItem.leftBarButtonItem = self.bckbtn
+            self.clicked_folder = self.file_names[(indexPath.row)]
+            var urls=(string:"")
+            urls = self.current_folder+"/"+self.clicked_folder
+            self.url = URL(string:"http://127.0.0.1:8000/?folder=\(urls)")
+            sessionLoadData(downloadURL: url!)
+            print(self.url)
+            tableView.reloadData()
+        }
+        
 //        let currentCell = self.tableView.cellForRow(at: indexPath) as UITableViewCell!;
-        self.clicked_folder = self.file_names[(indexPath.row)]
-        var urls=(string:"")
-        urls = self.current_folder+self.slash+self.clicked_folder
-        self.url = URL(string:"http://127.0.0.1:8000/?folder=\(urls)")
-        sessionLoadData(downloadURL: url!)
-        print(self.url)
+        //print(indexPath.row)
+       
         
-        tableView.reloadData()
+    }
+    
+   
+    
+    class Toast
+    {
+        class private func showAlert(backgroundColor:UIColor, textColor:UIColor, message:String)
+        {
+            
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            let label = UILabel(frame: CGRect.zero)
+            label.textAlignment = NSTextAlignment.center
+            label.text = message
+            label.font = UIFont(name: "", size: 15)
+            label.adjustsFontSizeToFitWidth = true
+            
+            label.backgroundColor =  backgroundColor //UIColor.whiteColor()
+            label.textColor = textColor //TEXT COLOR
+            
+            label.sizeToFit()
+            label.numberOfLines = 4
+            label.layer.shadowColor = UIColor.gray.cgColor
+            label.layer.shadowOffset = CGSize(width: 4, height: 3)
+            label.layer.shadowOpacity = 0.3
+            label.frame = CGRect(x: appDelegate.window!.frame.size.width, y: 64, width: appDelegate.window!.frame.size.width, height: 44)
+            
+            label.alpha = 1
+            
+            appDelegate.window!.addSubview(label)
+            
+            var basketTopFrame: CGRect = label.frame;
+            basketTopFrame.origin.x = 0;
+            
+            UIView.animate(withDuration
+                :2.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.curveEaseOut, animations: { () -> Void in
+                    label.frame = basketTopFrame
+            },  completion: {
+                (value: Bool) in
+                UIView.animate(withDuration:2.0, delay: 2.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
+                    label.alpha = 0
+                },  completion: {
+                    (value: Bool) in
+                    label.removeFromSuperview()
+                })
+            })
+        }
         
-
-//
-//        let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
-//
-//        let currentCell = tableView.cellForRow(at: indexPath!) as! UITableViewCell
-//
-        //print(currentCell?.textLabel!.text)
-//
-                //print("Selected")
-//        let indexPath = tableView.indexPathForSelectedRow
-//        //myIndex = indexPath.row
-//        let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
-//        let currentItem = currentCell.textLabel!.text
-//        //print(currentItem)
-//        let alertController = UIAlertController(title: "Simplified iOS", message: "YOu Selected" + currentItem!, preferredStyle: .alert)
-//        let defaultAction = UIAlertAction(title: "Close Alert", style: .default, handler: nil)
-//        alertController.addAction((defaultAction))
-//        //tableView.deselectRow(at: indexPath, animated:false)
-//
-//        present(alertController, animated: true, completion: nil)
-//        print(self.file_names[(indexPath!.row)])
-//        tableView.deselectRow(at: indexPath!, animated: false)
-        //
-    }//    func tableView(tableView: UITableView, didSelectRowAtIndexPath, indexPath: NSIndexPath){
-    ////    }
-    //func tableView
-    
-    
+        class func showPositiveMessage(message:String)
+        {
+            showAlert(backgroundColor: UIColor.green, textColor: UIColor.white, message: message)
+        }
+        class func showNegativeMessage(message:String)
+        {
+            showAlert(backgroundColor: UIColor.red, textColor: UIColor.white, message: message)
+        }
+    }
 }
 
