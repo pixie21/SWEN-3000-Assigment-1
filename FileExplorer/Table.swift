@@ -16,6 +16,7 @@ class Table: UITableViewController {
     var foldernum:Int = 0
     var filenum:Int = 0
     var files = [String]()
+    final let slash:String = "//"
     //var street:Int = 0
     var file_names = [String]()
     var clicked_folder:String=""
@@ -56,7 +57,7 @@ class Table: UITableViewController {
                 self.filenum = downloadedfiles.files.count
                 self.files = downloadedfiles.files
                 self.file_names = downloadedfiles.folders
-                self.current_folder= downloadedfiles.current
+                self.current_folder = downloadedfiles.current
                 //                print(foldername[0])
             }catch{
                 print("something went wrong after downloading")
@@ -165,7 +166,9 @@ class Table: UITableViewController {
         print("selected \( self.file_names[(indexPath.row)])")
 //        let currentCell = self.tableView.cellForRow(at: indexPath) as UITableViewCell!;
         self.clicked_folder = self.file_names[(indexPath.row)]
-        self.url = URL(string:"http://127.0.0.1:8000/?folder=\(self.clicked_folder)/")
+        var urls=(string:"")
+        urls = self.current_folder+self.slash+self.clicked_folder
+        self.url = URL(string:"http://127.0.0.1:8000/?folder=\(urls)")
         sessionLoadData(downloadURL: url!)
         print(self.url)
         
